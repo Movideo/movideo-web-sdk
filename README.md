@@ -17,7 +17,6 @@ npm install movideo-web-sdk
  * session
   * set(key, alias)
   * refresh()
-
  * media
   * get(mediaId[, params])
   * mostPlayedDay([params])
@@ -28,17 +27,24 @@ npm install movideo-web-sdk
   * totals()
   * images(mediaId)
   * search([params])
-
  * application
   * get()
-
  * playlist
   * get(id)
   * media(id)
   * images(id)
   * playlists(id)
   * root([id])
-
+ * tag
+  * search(tag[, params])
+  * profile(tagId)
+  * profileSearch(keyword[, params])
+ * playlist
+  * get(id)
+  * media(id)
+  * images(id)
+  * playlists(id)
+  * root([id])
  * tag
   * search(tag[, params])
   * profile(tagId)
