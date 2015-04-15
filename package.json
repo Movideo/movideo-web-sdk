@@ -3,14 +3,14 @@
   "version": "0.0.1",
   "description": "Movideo API wrapper",
   "homepage": "https://github.com/AuthenticEntertainment/hub-web-sdk",
-  "author": "Milos Dakic <hello@milosdakic.com> (https://milosdakic.com/)",
+  "author": "Milos Dakic <hello@milosdakic.com> (http://milosdakic.com/)",
   "contributors": [],
   "repository": {
     "type": "git",
     "url": "git://github.com/AuthenticEntertainment/movideo-web-sdk.git"
   },
   "bugs:": "https://github.com/AuthenticEntertainment/movideo-web-sdk/issues",
-  "main": "src/MOVIDEO.js",
+  "main": "src/Movideo.js",
   "devDependencies": {
     "chai": "~1.10.0",
     "chai-as-promised": "~4.1.1",
@@ -22,5 +22,10 @@
   },
   "scripts": {
     "test": "mocha"
-  }
+  },
+  "private": true,
+  "publishConfig": {
+    "registry": "http://buildvm.movideo.com:4873/"
+  },
+  "license": "MIT"
 }
