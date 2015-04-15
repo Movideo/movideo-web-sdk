@@ -37,11 +37,15 @@ npm install movideo-web-sdk
   * search(tag[, params])
   * profile(tagId)
   * profileSearch(keyword[, params])
+ * *session* `internal use only`
+  * *get(key, alias)*
+  * *refresh()*
+  * *setKey(key)*
+  * *setAlias(alias)*
+  * *token()*
 
 ## Configuration
 
-* `Movideo.setKey('your api key');`
-* `Movideo.setAlias('your app alias');`
 * `Movideo.refreshSession();`
 
 
