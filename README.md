@@ -15,12 +15,41 @@ npm install movideo-web-sdk
 *Where you see params it is a plain JavaScript object, e.g. `{ email: 'foo@example.com' }`*
 
  * session
+  * set(key, alias)
+  * refresh()
+
+ * media
+  * get(mediaId[, params])
+  * mostPlayedDay([params])
+  * mostPlayedWeek([params])
+  * mostPlayedMonth([params])
+  * cuePoints(mediaId)
+  * related(mediaId[, params])
+  * totals()
+  * images(mediaId)
+  * search([params])
+
+ * application
   * get()
+
+ * playlist
+  * get(id)
+  * media(id)
+  * images(id)
+  * playlists(id)
+  * root([id])
+
+ * tag
+  * search(tag[, params])
+  * profile(tagId)
+  * profileSearch(keyword[, params])
 
 ## Configuration
 
-* `Movideo.setApiKey('your api key');`
-* `Movideo.setApiAlias('your app alias');`
+* `Movideo.setKey('your api key');`
+* `Movideo.setAlias('your app alias');`
+* `Movideo.setSession(new Movideo.session.set(key, alias));`
+* `Movideo.refreshSession();` this is a shortcut to Movideo.session.refresh()
 
 
 ## Development

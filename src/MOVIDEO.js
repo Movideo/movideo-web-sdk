@@ -26,7 +26,9 @@ function Movideo(key, alias) {
     return new Movideo(key, alias);
   }
 
-  this._api = {
+  this._session = null;
+
+  this._api     = {
     auth     : null,
     alias    : null,
     host     : Movideo.DEFAULT_HOST,
@@ -35,14 +37,26 @@ function Movideo(key, alias) {
   };
 
   this._prepResources();
-  this.setApiKey(key);
-  this.setApiAlias(alias);
+  this.setKey(key);
+  this.setAlias(alias);
 }
 
 Movideo.prototype = {
 
-  setApiAlias: function(alias) {
+  setAlias: function(alias) {
     this._setApiField('alias', alias);
+  },
+
+  setSession: function(session) {
+    this._session = session;
+  },
+
+  getSession: function() {
+    return this._session;
+  },
+
+  refreshSession: function() {
+    this._session.refresh();
   },
 
   _setApiField: function(key, value) {
