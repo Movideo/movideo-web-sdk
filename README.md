@@ -42,7 +42,7 @@ npm install movideo-web-sdk
 
 * `Movideo.setKey('your api key');`
 * `Movideo.setAlias('your app alias');`
-* `Movideo.refreshSession();` this is a shortcut to Movideo.session.refresh()
+* `Movideo.refreshSession();`
 
 
 ## Development
