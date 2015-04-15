@@ -14,5 +14,4 @@
 ## Development
 
 ## Author
-
-Developed by Milos Dakic [hello@milosdakic.com](mailto:hello@milosdakic.com)
+Originally by Milos Dakic (hello@milosdakic.com). Development was sponsored by Authentic Entertainment.
