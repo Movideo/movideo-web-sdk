@@ -26,22 +26,13 @@ npm install movideo-web-sdk
   * search([params])
  * application
   * get()
+  * config()
  * playlist
-  * get(id)
-  * media(id)
+  * get(id[, params])
+  * media(id[, params])
   * images(id)
-  * playlists(id)
-  * root([id])
- * tag
-  * search(tag[, params])
-  * profile(tagId)
-  * profileSearch(keyword[, params])
- * playlist
-  * get(id)
-  * media(id)
-  * images(id)
-  * playlists(id)
-  * root([id])
+  * playlists(id[, params])
+  * root([id, params])
  * tag
   * search(tag[, params])
   * profile(tagId)
