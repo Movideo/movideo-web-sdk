@@ -23,7 +23,6 @@
   "scripts": {
     "test": "mocha"
   },
-  "private": true,
   "publishConfig": {
     "registry": "http://buildvm.movideo.com:4873/"
   },
