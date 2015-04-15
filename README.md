@@ -14,9 +14,6 @@ npm install movideo-web-sdk
 
 *Where you see params it is a plain JavaScript object, e.g. `{ email: 'foo@example.com' }`*
 
- * session
-  * set(key, alias)
-  * refresh()
  * media
   * get(mediaId[, params])
   * mostPlayedDay([params])
