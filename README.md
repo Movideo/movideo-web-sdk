@@ -37,6 +37,10 @@ npm install movideo-web-sdk
   * search(tag[, params])
   * profile(tagId)
   * profileSearch(keyword[, params])
+ * *session* `internal use only`
+  * *get(key, alias)*
+  * *refresh()*
+  * *token()*
 
 ## Configuration
 
