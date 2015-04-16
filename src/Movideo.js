@@ -4,9 +4,8 @@ Movideo.DEFAULT_HOST      = 'api.movideo.com';
 Movideo.DEFAULT_PORT      = '80';
 Movideo.DEFAULT_BASE_PATH = '/rest/';
 Movideo.DEFAULT_FORMAT    = 'json';
-
+// use node's default timout 900 milliseconds
 Movideo.DEFAULT_TIMEOUT   = require('http').createServer().timeout;
-
 Movideo.PACKAGE_VERSION   = require('../package.json').verion;
 
 var resources = {
@@ -18,6 +17,7 @@ var resources = {
   // Geolocation: require('./resources/Geolocation')
 };
 
+Movideo.Resource = require('./Resource');
 Movideo.resources = resources;
 
 function Movideo(key, alias) {
@@ -32,6 +32,7 @@ function Movideo(key, alias) {
     host     : Movideo.DEFAULT_HOST,
     port     : Movideo.DEFAULT_PORT,
     timeout  : Movideo.DEFAULT_TIMEOUT,
+    basePath : Movideo.DEFAULT_BASE_PATH,
   };
 
   this._prepResources();
@@ -41,7 +42,7 @@ function Movideo(key, alias) {
 Movideo.prototype = {
 
   createSession: function(key, alias) {
-    this._session = new this.session.get(key, alias);
+    this._session = new this.session.get({'key': key, 'applicationalias': alias});
   },
 
   getSession: function() {

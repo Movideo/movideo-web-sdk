@@ -17,8 +17,9 @@
     "mocha": "~2.1.0"
   },
   "dependencies": {
-    "qs": "^2.3.3",
-    "lodash": "^3.1.0"
+    "bluebird": "^2.9.24",
+    "lodash": "^3.1.0",
+    "qs": "^2.3.3"
   },
   "scripts": {
     "test": "mocha"
