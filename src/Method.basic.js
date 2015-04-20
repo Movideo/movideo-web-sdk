@@ -9,7 +9,7 @@ module.exports = {
     method: 'POST'
   }),
 
-  list: Method({
+  get: Method({
     method: 'GET'
   }),
 

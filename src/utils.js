@@ -8,12 +8,6 @@ var toString = {}.toString;
 
 var utils = module.exports = {
 
-  isOptionsHash: function (o) {
-    return _.isPlainObject(o) && _.some(['api_key', 'idempotency_key', 'stripe_account'], function(key) {
-      return o.hasOwnProperty(key);
-    });
-  },
-
   isObject: function(o) {
     return _.isPlainObject(o);
   },
@@ -63,39 +57,11 @@ var utils = module.exports = {
    */
   getDataFromArgs: function(args) {
     if (args.length > 0) {
-      if (utils.isObject(args[0]) && !utils.isOptionsHash(args[0])) {
+      if (utils.isObject(args[0])) {
         return args.shift();
       }
     }
     return {};
-  },
-
-  /**
-   * Return the options hash from a list of arguments
-   */
-  getOptionsFromArgs: function(args) {
-    var opts = {
-      auth: null,
-      headers: {},
-    }
-    if (args.length > 0) {
-      var arg = args[args.length - 1];
-      if (utils.isAuthKey(arg)) {
-        opts.auth = args.pop();
-      } else if (utils.isOptionsHash(arg)) {
-        var params = args.pop();
-        if (params.api_key) {
-          opts.auth = params.api_key;
-        }
-        if (params.idempotency_key) {
-          opts.headers['Idempotency-Key'] = params.idempotency_key;
-        }
-        if (params.stripe_account) {
-          opts.headers['Stripe-Account'] = params.stripe_account;
-        }
-      }
-    }
-    return opts;
   },
 
   /**

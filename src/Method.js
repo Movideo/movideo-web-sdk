@@ -5,7 +5,6 @@ var path = require('path');
 var utils = require('./utils');
 var OPTIONAL_REGEX = /^optional!/;
 
-
 /**
  * Create an API method from the declared spec.
  *
@@ -51,7 +50,6 @@ module.exports = function Method(spec) {
     }
 
     var data = utils.getDataFromArgs(args);
-    var opts = utils.getOptionsFromArgs(args);
 
     if (args.length) {
       throw new Error(
@@ -72,8 +70,8 @@ module.exports = function Method(spec) {
       }
     };
 
-    var options = {headers: _.extend(opts.headers, spec.headers)};
-    self._request(requestMethod, requestPath, data, opts.auth, options, requestCallback);
+    var options = {headers: spec.headers};
+    self.request(requestMethod, requestPath, data, options, requestCallback);
 
     return deferred.promise;
   };

@@ -7,11 +7,8 @@ var Method = Resource.method;
 
 module.exports = Resource.extend({
 
-  path: 'session?applicationalias={alias}&key={key}',
+  path: 'application',
 
-  get: Method({
-    method: 'GET',
-    urlParams: ['key', 'alias']
-  })
+  includeBasic: ['retrieve']
 
 });

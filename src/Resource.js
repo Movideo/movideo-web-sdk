@@ -1,12 +1,13 @@
-'use strict'
+'use strict';
 
 var http = require('http');
 var _ = require('lodash');
 var path = require('path');
 var Promise = require('bluebird');
 var utils = require('./utils');
-// var Error = require('./Error');
+var Error = require('./Error');
 
+var hasOwn = {}.hasOwnProperty;
 
 // Provide extension mechanism for Stripe Resource Sub-Classes
 Resource.extend = utils.protoExtend;
@@ -26,10 +27,10 @@ function Resource(resource, urlData) {
   if (this.includeBasic) {
     this.includeBasic.forEach(function(method) {
       this[method] = Resource.BASIC_METHODS[method];
-    });
+    }, this);
   }
 
-  this.initialise.apply(this, arguments);
+  this.initialize.apply(this, arguments);
 }
 
 Resource.prototype = {
@@ -84,10 +85,9 @@ Resource.prototype = {
     return deferred;
   },
 
-  request: function(method, path, data, auth, options, callback) {
+  request: function(method, path, data, options, callback) {
     var requestData = utils.stringifyRequestData(data || {});
     var self = this;
-    var requestData;
 
     if (self.requestDataProcessor) {
       requestData = self.requestDataProcessor(method, data, options.headers);
@@ -95,38 +95,49 @@ Resource.prototype = {
       requestData = utils.stringifyRequestData(data || {});
     }
 
+    var token = this._resource.getApiField('token');
+
+    var headers = {
+      'Accept': 'application/' + this._resource.getApiField('format'),
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Content-Length': requestData.length,
+    };
+
+    if (token) {
+      headers['X-Movideo-Token'] = token;
+    }
+
     if (options.headers) {
       headers = _.extend(headers, options.headers);
     }
 
-    this.makeRequest();
-  },
+    makeRequest();
 
-  makeRequest: function() {
-    var timeout = self._resource.getApiField('timeout');
+    function makeRequest() {
+      var timeout = self._resource.getApiField('timeout');
+      var host = self.overrideHost || self._resource.getApiField('host');
 
-    var host = self.overrideHost || self._resource.getApiField('host');
-
-    var req = http.request({
-      host: host,
-      port: self._resource.getApiField('port'),
-      path: path,
-      method: method,
-      headers: headers,
-      ciphers: "DEFAULT:!aNULL:!eNULL:!LOW:!EXPORT:!SSLv2:!MD5"
-    });
-
-    req.setTimeout(timeout, self._timeoutHandler(timeout, req, callback));
-    req.on('response', self._responseHandler(req, callback));
-    req.on('error', self._errorHandler(req, callback));
-
-    req.on('socket', function(socket) {
-      socket.on('connect'), function() {
-        // Send payload; we're safe:
-        req.write(requestData);
-        req.end();
+      var req = http.request({
+        host: host,
+        port: self._resource.getApiField('port'),
+        path: path,
+        method: method,
+        headers: headers,
+        ciphers: "DEFAULT:!aNULL:!eNULL:!LOW:!EXPORT:!SSLv2:!MD5"
       });
-    });
+
+      req.setTimeout(timeout, self.timeoutHandler(timeout, req, callback));
+      req.on('response', self.responseHandler(req, callback));
+      req.on('error', self.errorHandler(req, callback));
+
+      req.on('socket', function(socket) {
+        socket.on('connect', function() {
+          // Send payload; we're safe:
+          req.write(requestData);
+          req.end();
+        });
+      });
+    }
   },
 
   // Handlers
@@ -154,7 +165,7 @@ Resource.prototype = {
     return function(res) {
       var response = '';
 
-      res.setEncoding('utf8');
+      // res.setEncoding('utf8');
       res.on('data', function(chunk) {
         response += chunk;
       });
