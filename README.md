@@ -11,13 +11,13 @@ npm install movideo-web-sdk
 ## API Overview
 
 Every resource is accessed via your `movideo` instance:
-```
+```js
 var movideo = require('movideo-web-sdk')('key', 'alias');
 // movideo.{ RESOURCE }.{ METHOD }
 ```
 
 Every resource method accepts an optional callback as the last argument:
-```
+```js
 movideo.media.retrieve(80254, function(error, media) {
   error; // null if no error occured
   media; // the media object
@@ -25,7 +25,7 @@ movideo.media.retrieve(80254, function(error, media) {
 ```
 
 Additionally, every resource method returns a promise, so you don't have to use the regular callback:
-```
+```js
 movideo.media.retrieve(80254)
 .then(function(media) {
   return media;
