@@ -10,25 +10,48 @@ npm install movideo-web-sdk
 
 ## API Overview
 
+Every resource is accessed via your `movideo` instance:
+```
+var movideo = require('movideo-web-sdk')('key', 'alias');
+// movideo.{ RESOURCE }.{ METHOD }
+```
+
+Every resource method accepts an optional callback as the last argument:
+```
+movideo.media.retrieve(80254, function(error, media) {
+  error; // null if no error occured
+  media; // the media object
+});
+```
+
+Additionally, every resource method returns a promise, so you don't have to use the regular callback:
+```
+movideo.media.retrieve(80254)
+.then(function(media) {
+  return media;
+}, function(error) {
+  // deal with an error
+});
+```
+
 ### Available resources & methods
 
 *Where you see params it is a plain JavaScript object, e.g. `{ email: 'foo@example.com' }`*
 
- * media
-  * get(mediaId[, params])
-  * mostPlayedDay([params])
-  * mostPlayedWeek([params])
-  * mostPlayedMonth([params])
-  * cuePoints(mediaId)
-  * related(mediaId[, params])
-  * totals()
-  * images(mediaId)
-  * search([params])
  * application
-  * get()
-  * config()
+  * retrieve()
+ * media
+  * retrieve(id[, params])
+  * daily([params])
+  * weekly([params])
+  * monthly([params])
+  * cuepoints(id)
+  * images(id)
+  * related(id[, params])
+  * total()
+
  * playlist
-  * get(id[, params])
+  * retrieve(id[, params])
   * media(id[, params])
   * images(id)
   * playlists(id[, params])
@@ -37,16 +60,20 @@ npm install movideo-web-sdk
   * search(tag[, params])
   * profile(tagId)
   * profileSearch(keyword[, params])
- * *session* `internal use only`
-  * *get(key, alias)*
-  * *refresh()*
-  * *setKey(key)*
-  * *setAlias(alias)*
-  * *token()*
+ * session
+  * get(key, alias)
 
 ## Configuration
 
-* `Movideo.refreshSession();`
+Avaliable methods
+
+* `Movideo.setHost(host);`
+* `Movideo.setPost(port);`
+* `Movideo.setAlias(alias);`
+* `Movideo.setKey(key);`
+* `Movideo.setTimeout(ms);` (default is node's default: `120000ms`)
+* `Movideo.setFormat(json/xml);`
+* `Movideo.setToken(token);`
 
 
 ## Development
