@@ -49,7 +49,6 @@ movideo.media.retrieve(80254)
   * images(id)
   * related(id[, params])
   * total()
-
  * playlist
   * retrieve(id[, params])
   * media(id[, params])
