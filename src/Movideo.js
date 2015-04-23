@@ -6,7 +6,7 @@ Movideo.DEFAULT_BASE_PATH = '/rest/';
 Movideo.DEFAULT_FORMAT    = 'json';
 // use node's default timout 900 milliseconds
 Movideo.DEFAULT_TIMEOUT   = require('http').createServer().timeout;
-Movideo.PACKAGE_VERSION   = require('../package.json').verion;
+Movideo.PACKAGE_VERSION   = require('../package.json').version;
 
 var resources = {
   Session : require('./resources/Session')
