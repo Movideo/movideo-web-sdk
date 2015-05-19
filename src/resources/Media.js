@@ -17,6 +17,10 @@ module.exports = Resource.extend({
     urlParams: ['id']
   }),
 
+  search: Method({
+    method: 'GET'
+  }),
+
   images: Method({
     method: 'GET',
     path: '/{id}/images',
