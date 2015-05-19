@@ -11,6 +11,11 @@ module.exports = Resource.extend({
 
   includeBasic: ['retrieve'],
 
+  search: Method({
+    method: 'GET',
+    path: '/search'
+  }),
+
   media: Method({
     method: 'GET',
     path: '/{id}/media',
@@ -34,4 +39,4 @@ module.exports = Resource.extend({
     path: '/firstRootPlaylist'
   })
 
-});
+}, { depth: 0 });
