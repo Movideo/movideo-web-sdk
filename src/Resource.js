@@ -98,9 +98,7 @@ Resource.prototype = {
     var token = this._resource.getApiField('token');
 
     var headers = {
-      'Accept': 'application/' + this._resource.getApiField('format'),
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'Content-Length': requestData.length,
+      'Accept': 'application/json'
     };
 
     if (token) {
