@@ -12,8 +12,7 @@ module.exports = Resource.extend({
   includeBasic: ['retrieve'],
 
   search: Method({
-    method: 'GET',
-    path: '/search'
+    method: 'GET'
   }),
 
   media: Method({
