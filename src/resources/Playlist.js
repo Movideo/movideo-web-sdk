@@ -12,7 +12,9 @@ module.exports = Resource.extend({
   includeBasic: ['retrieve'],
 
   search: Method({
-    method: 'GET'
+    method: 'GET',
+    path: '/search?title={title}&pageSize={pageSize}',
+    urlParams: ['title', 'pageSize']
   }),
 
   media: Method({
