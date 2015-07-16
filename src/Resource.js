@@ -173,11 +173,18 @@ Resource.prototype = {
           response = JSON.parse(response);
           if (response.error) {
             var err;
-            if (res.statusCode === 401) {
-              err = new Error.AuthenticationError(response.error);
-            } else {
-              err = Error.ResourceError.generate(response.error);
+
+            switch(res.statusCode) {
+              case 401:
+                err = new Error.AuthenticationError(response.error);
+                break;
+              case 403:
+                err = new Error.ForbiddenError(response.error);
+                break;
+              default:
+                err = Error.ResourceError.generate(response.error);
             }
+
             return callback.call(self, err, null);
           }
         } catch (e) {
