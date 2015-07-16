@@ -55,4 +55,5 @@ ResourceError.generate = function(rawError) {
 _Error.InvalidRequestError = ResourceError.extend({ type: 'InvalidRequest' });
 _Error.APIError = ResourceError.extend({ type: 'APIError' });
 _Error.AuthenticationError = ResourceError.extend({ type: 'AuthenticationError' });
+_Error.ForbiddenError = ResourceError.extend({ type: 'ForbiddenError' });
 _Error.ConnectionError = ResourceError.extend({ type: 'ConnectionError' });
