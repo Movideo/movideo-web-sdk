@@ -9,6 +9,5 @@ module.exports = Resource.extend({
 
   path: 'application',
 
-  includeBasic: ['retrieve']
-
+  includeBasic: ['get']
 });
