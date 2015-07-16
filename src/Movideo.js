@@ -8,11 +8,12 @@ Movideo.DEFAULT_TIMEOUT   = require('http').createServer().timeout;
 Movideo.PACKAGE_VERSION   = require('../package.json').version;
 
 var resources = {
-  Session  : require('./resources/Session'),
-  Playlist : require('./resources/Playlist'),
-  Media    : require('./resources/Media')
+  Session: require('./resources/Session'),
+  Playlist: require('./resources/Playlist'),
+  Media: require('./resources/Media'),
+  Application: require('./resources/Application')
 };
-
+Movideo.Error = require('./Error');
 Movideo.Resource = require('./Resource');
 Movideo.resources = resources;
 
@@ -26,6 +27,7 @@ function Movideo(key, alias) {
     key      : null,
     alias    : null,
     token    : null,
+    session:  null,
     host     : Movideo.DEFAULT_HOST,
     port     : Movideo.DEFAULT_PORT,
     basePath : Movideo.DEFAULT_BASE_PATH,
@@ -53,6 +55,14 @@ Movideo.prototype = {
 
   setAlias: function(alias) {
     this._setApiField('alias', alias);
+  },
+
+  setSession: function(session) {
+    this._setApiField('session', session);
+  },
+
+  getSession: function() {
+    return this.getApiField('session');
   },
 
   setTimeout: function(timeout) {
