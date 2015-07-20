@@ -1,6 +1,6 @@
 {
   "name": "movideo-web-sdk",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Movideo API wrapper",
   "homepage": "https://github.com/AuthenticEntertainment/hub-web-sdk",
   "author": "Milos Dakic <hello@milosdakic.com> (http://milosdakic.com/)",
