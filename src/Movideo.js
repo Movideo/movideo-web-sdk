@@ -24,14 +24,15 @@ function Movideo(key, alias) {
   }
 
   this.api = {
-    key      : null,
-    alias    : null,
-    token    : null,
-    session:  null,
-    host     : Movideo.DEFAULT_HOST,
-    port     : Movideo.DEFAULT_PORT,
-    basePath : Movideo.DEFAULT_BASE_PATH,
-    timeout  : Movideo.DEFAULT_TIMEOUT
+    key: null,
+    alias: null,
+    token: null,
+    session: null,
+    client_ip: null,
+    host: Movideo.DEFAULT_HOST,
+    port: Movideo.DEFAULT_PORT,
+    basePath: Movideo.DEFAULT_BASE_PATH,
+    timeout: Movideo.DEFAULT_TIMEOUT
   };
 
   this.loadResources();
@@ -55,6 +56,10 @@ Movideo.prototype = {
 
   setAlias: function(alias) {
     this._setApiField('alias', alias);
+  },
+
+  setClientIP: function(ip) {
+    this._setApiField('client_ip', ip);
   },
 
   setSession: function(session) {

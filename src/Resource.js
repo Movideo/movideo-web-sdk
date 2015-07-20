@@ -96,6 +96,7 @@ Resource.prototype = {
     }
 
     var token = this._resource.getApiField('token');
+    var client_ip = this._resource.getApiField('client_ip');
 
     var headers = {
       'Accept': 'application/json'
@@ -103,6 +104,9 @@ Resource.prototype = {
 
     if (token) {
       headers['X-Movideo-Token'] = token;
+    }
+    if (client_ip) {
+      headers['X-Forwarded-For'] = client_ip;
     }
 
     if (options.headers) {
