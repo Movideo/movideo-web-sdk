@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var path = require('path');
+var qs = require('qs');
 var utils = require('./utils');
 var OPTIONAL_REGEX = /^optional!/;
 
@@ -58,6 +59,11 @@ module.exports = function Method(spec) {
     }
 
     var requestPath = this.createFullPath(commandPath, urlData);
+
+    if (!_.isEmpty(data)) {
+      requestPath += '?' + qs.stringify(data);
+    }
+
     var requestCallback = function(err, response) {
       if (err) {
         deferred.reject(err);
@@ -70,7 +76,7 @@ module.exports = function Method(spec) {
       }
     };
 
-    var options = {headers: spec.headers};
+    var options = { headers: spec.headers };
     self.request(requestMethod, requestPath, data, options, requestCallback);
 
     return deferred.promise;
