@@ -16,14 +16,8 @@ var utils = module.exports = {
    * Stringifies an Object, accommodating a single-level of nested objects
    * (forming the conventional key "parent[child]=value")
    */
-  stringifyRequestData: function(data, _key) {
-    if (data.expand) {
-      data = _.cloneDeep(data);
-      data['expand[]'] = data.expand;
-      delete data.expand;
-    }
-
-    return qs.stringify(data, {indices: false});
+  stringifyRequestData: function(data) {
+    return qs.stringify(data, {arrayFormat: 'brackets'});
   },
 
   /**
