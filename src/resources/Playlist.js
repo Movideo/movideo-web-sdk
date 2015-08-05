@@ -13,8 +13,7 @@ module.exports = Resource.extend({
 
   search: Method({
     method: 'GET',
-    path: '/search?title={title}&pageSize={pageSize}',
-    urlParams: ['title', 'pageSize']
+    path: '/search'
   }),
 
   media: Method({
@@ -40,4 +39,4 @@ module.exports = Resource.extend({
     path: '/firstRootPlaylist'
   })
 
-}, { depth: 0 });
+});
